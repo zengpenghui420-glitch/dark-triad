@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F3E8EF">
+<meta name="description" content="黑暗人格三角测试。18 道原创情景题，看看权谋、自恋、冷酷三种倾向。娱乐向自我探索，不构成诊断。">
+<meta property="og:title" content="黑暗人格三角测试">
+<meta property="og:description" content="你敢面对真实的自己吗。娱乐向自我探索，不构成心理诊断。">
+<meta property="og:url" content="https://zengpenghui420-glitch.github.io/dark-triad/">
+<link rel="canonical" href="https://zengpenghui420-glitch.github.io/dark-triad/">
+<title>黑暗人格三角测试</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F3E8EF'/%3E%3Cpath d='M16 7 L26 25 H6 Z' fill='none' stroke='%238B3A5D' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#F3E8EF;--card:#FFF9F7;--ink:#2A1830;--muted:#6D5362;--faint:#A08A98;
+  --wine:#8B3A5D;--wine-deep:#6E2C49;--plum:#3A2438;--line:#E5D0D9;--blush:#F8E6ED;
+  --sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:#E7D5DE;color-scheme:light}
+body{
+  max-width:430px;margin:0 auto;min-height:100dvh;color:var(--ink);line-height:1.6;
+  font-family:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Noto Sans SC","WenQuanYi Micro Hei","Droid Sans Fallback","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(circle at 8% -4%, rgba(139,58,93,.16), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(58,36,56,.08), transparent 28%),
+    linear-gradient(180deg,#F7EEF3,#F3E8EF 42%,#EFE0E8);
+  overflow-x:hidden
+}
+body.lock{overflow:hidden}
+button,input{font-family:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+[hidden]{display:none !important}
+.screen{display:none}
+.screen.active{display:block}
+#start.active,#quiz.active,#loading.active{display:flex;flex-direction:column;min-height:100dvh}
+#loading.active{align-items:center;justify-content:center;text-align:center;padding:24px}
+#start{padding:calc(22px + var(--st)) 22px calc(22px + var(--sb));text-align:center}
+.mark{width:168px;height:112px;margin:8px auto 4px}
+.mark svg{width:100%;height:auto;display:block}
+.eyebrow{font-size:12px;letter-spacing:3px;color:var(--wine);font-weight:600;margin-bottom:8px}
+h1{font-size:30px;line-height:1.25;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.sub{font-size:16px;color:var(--plum);margin-bottom:16px}
+.dim-intro{list-style:none;text-align:left;display:flex;flex-direction:column;gap:8px;margin:0 0 16px}
+.dim-intro li{display:flex;gap:10px;align-items:center;background:rgba(255,249,247,.82);border:1px solid var(--line);border-radius:16px;padding:9px 12px}
+.dim-intro i{flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:var(--blush);color:var(--wine);font-style:normal;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.dim-intro b{display:block;font-size:14px;line-height:1.3}
+.dim-intro span{display:block;font-size:12px;color:var(--muted);line-height:1.45}
+.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.pill{padding:5px 10px;border-radius:999px;background:rgba(255,249,247,.85);border:1px solid var(--line);color:var(--wine-deep);font-size:12px}
+.btn-primary{width:100%;padding:15px 16px;border:none;border-radius:28px;background:linear-gradient(180deg,#9A4A68,#7C3454);color:#FFF8F6;font-size:17px;font-weight:700;box-shadow:0 8px 18px rgba(139,58,93,.22)}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.65}
+.btn-ghost{width:100%;margin-top:10px;padding:13px 16px;border-radius:28px;border:1.5px solid #C989A3;background:rgba(255,249,247,.9);color:var(--wine-deep);font-size:15px;font-weight:600}
+.btn-ghost:active{transform:scale(.98)}
+.hint{margin-top:14px;font-size:12px;color:var(--faint);line-height:1.6}
+.disclaimer{margin-top:16px;padding:12px 12px 12px 14px;background:#F8E7EC;border:1px solid #E3C3CF;border-left:4px solid var(--wine);border-radius:14px;color:#4A2436;font-size:13px;line-height:1.7;text-align:left}
+.disclaimer strong{font-weight:700}
+.qh{padding:14px 18px 12px;background:rgba(243,232,239,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(8px)}
+.qrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.qback{background:none;border:none;color:var(--muted);font-size:14px;padding:4px 0}
+.qprog{font-size:13px;color:var(--wine-deep);font-weight:700}
+.track{height:6px;background:#E7D5DE;border-radius:3px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#C46B8A,#8B3A5D);border-radius:3px;transition:width .3s}
+.qbody{padding:22px 20px 28px}
+.qno{font-size:12px;letter-spacing:2px;color:var(--wine);font-weight:700;margin-bottom:8px}
+.qtext{font-size:20px;font-weight:700;line-height:1.5;margin-bottom:18px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;background:rgba(255,249,247,.94);border:1.5px solid var(--line);border-radius:16px;color:var(--ink);font-size:15px;box-shadow:0 3px 0 rgba(229,208,217,.8)}
+.opt .onum{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--blush);color:var(--wine-deep);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.sel,.opt:active{border-color:var(--wine);background:#F8E6ED;color:var(--wine-deep)}
+.opt.sel .onum{background:var(--wine);color:#FFF8F6}
+.loader{width:40px;height:40px;border:3px solid #E7D3DC;border-top-color:var(--wine);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 16px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.load-title{font-weight:700;color:var(--wine-deep)}
+.load-sub{margin-top:6px;font-size:13px;color:var(--faint)}
+#result{padding-bottom:calc(188px + var(--sb))}
+.rtop{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(243,232,239,.94);border-bottom:1px solid var(--line);font-size:14px;font-weight:700;backdrop-filter:blur(8px)}
+.rtop span:last-child{font-weight:500;color:var(--wine);font-size:13px}
+.result-body{padding:16px 16px 8px}
+.card{position:relative;background:linear-gradient(180deg,rgba(255,249,247,.98),rgba(255,244,247,.94));border:1px solid var(--line);border-radius:22px;padding:18px 16px 16px;margin-bottom:12px;box-shadow:0 10px 24px rgba(90,40,60,.05)}
+.kicker{font-size:12px;letter-spacing:4px;color:var(--wine);font-weight:700}
+.index-num{font-size:68px;line-height:.95;font-weight:700;color:var(--wine-deep);letter-spacing:-1px;margin:4px 0 2px}
+.index-max{font-size:12px;color:var(--faint);margin-bottom:10px}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap}
+.lv{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--blush);color:var(--wine-deep);font-size:13px;font-weight:700}
+.lv-line{margin-top:8px;font-size:13px;color:var(--muted)}
+.type-title{font-size:28px;line-height:1.25;margin:10px 0 6px}
+.punch{font-size:15px;line-height:1.7;color:var(--plum)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag{padding:4px 10px;border-radius:999px;background:#F3D5E0;color:var(--wine-deep);font-size:12px;font-weight:600}
+.note{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6}
+.st{font-size:16px;font-weight:700;letter-spacing:1px;margin-bottom:12px}
+.st:before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:2px;background:var(--wine);transform:translateY(-1px) rotate(45deg)}
+.fine{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.65}
+.radar-box svg{width:100%;height:auto;display:block}
+.score-row{display:flex;gap:8px;margin-top:2px}
+.score-row div{flex:1;text-align:center;background:var(--blush);border-radius:14px;padding:8px 4px}
+.score-row b{display:block;font-size:20px;color:var(--wine-deep);line-height:1.2}
+.score-row span{font-size:12px;color:var(--muted)}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+.bullets li{position:relative;padding-left:14px;font-size:14.5px;line-height:1.7;color:#3A2434}
+.bullets li:before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--wine)}
+.sublabel{margin:14px 0 6px;font-size:12px;letter-spacing:2px;color:var(--faint)}
+.rel{font-size:13.5px;line-height:1.65;color:var(--muted);margin-top:4px}
+.rel b{color:var(--wine-deep);font-weight:700}
+.dim-read{padding:12px 0;border-top:1px solid var(--line)}
+.dim-read:first-of-type{border-top:none;padding-top:0}
+.dim-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dn{font-size:14px;font-weight:700}
+.ds{font-size:18px;font-weight:700;color:var(--wine)}
+.dim-read p{margin-top:4px;font-size:13.5px;color:var(--muted);line-height:1.7}
+#result .disclaimer{margin:4px 0 12px}
+.acts{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:8px 12px calc(10px + var(--sb));background:rgba(255,249,247,.97);border-top:1px solid var(--line);z-index:20;display:flex;flex-direction:column;gap:6px}
+.acts-note{font-size:11px;color:var(--muted);text-align:center;line-height:1.45}
+.acts-row{display:flex;gap:8px}
+.acts-row button{flex:1;padding:11px 4px;border-radius:22px;font-size:13px;font-weight:700}
+.bo{border:1.5px solid #C989A3;background:#fff;color:var(--wine-deep)}
+.bp{border:none;background:linear-gradient(180deg,#9A4A68,#7C3454);color:#FFF8F6}
+.ov{position:fixed;inset:0;background:rgba(42,24,48,.82);z-index:200;display:none;flex-direction:column;align-items:center;padding:16px 16px calc(16px + var(--sb));overflow-y:auto}
+.ov.show{display:flex}
+.ov img{width:min(100%,400px);border-radius:16px;background:#F3E8EF}
+.ovh{color:#F3E8EF;font-size:14px;margin:8px 0 12px}
+.ovb{display:flex;gap:10px;width:100%;max-width:400px;margin-top:12px}
+.ovb button{flex:1;padding:12px;border:none;border-radius:22px;font-size:15px;font-weight:700}
+.toast{position:fixed;bottom:calc(200px + var(--sb));left:50%;transform:translateX(-50%);background:rgba(42,24,48,.92);color:#FFF8F6;padding:10px 16px;border-radius:20px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;max-width:88%;text-align:center}
+.toast.show{opacity:1}
+.code-mask{position:fixed;inset:0;background:rgba(42,24,48,.42);z-index:150;display:none;align-items:center;justify-content:center;padding:20px}
+.code-mask.show{display:flex}
+.code-panel-wrap{position:relative;width:100%;max-width:340px}
+.code-panel{background:#FFF9F7;border:1.5px solid var(--line);border-radius:22px;padding:24px 18px 18px;box-shadow:0 16px 40px rgba(42,24,48,.16);text-align:center}
+.code-panel h3{font-size:18px;margin-bottom:14px}
+.code-panel input{width:100%;padding:14px 12px;border:1.5px solid var(--line);border-radius:14px;font-size:18px;letter-spacing:2px;text-align:center;color:var(--ink);background:#F8F1F4;outline:none}
+.code-panel input:focus{border-color:var(--wine);background:#fff}
+.code-panel .btn-primary{margin-top:12px}
+.code-hint{margin-top:12px;font-size:12px;color:var(--faint);line-height:1.6}
+.code-close{position:absolute;top:8px;right:12px;background:none;border:none;font-size:22px;color:var(--faint);line-height:1;padding:4px}
+@media (prefers-reduced-motion:reduce){.fill,.toast{transition:none}.loader{animation:none}}
+</style>
+</head>
+<body>
+<section id="start" class="screen active">
+  <div class="mark" aria-hidden="true">
+    <svg viewBox="0 0 200 132">
+      <circle cx="100" cy="70" r="42" fill="#F8E6ED"/>
+      <path d="M100 28 L152 112 H48 Z" fill="none" stroke="#8B3A5D" stroke-width="7" stroke-linejoin="round"/>
+      <circle cx="100" cy="78" r="5" fill="#6E2C49"/>
+    </svg>
+  </div>
+  <p class="eyebrow">娱乐向 · 自我探索</p>
+  <h1>黑暗人格三角测试</h1>
+  <p class="sub">你敢面对真实的自己吗</p>
+  <ul class="dim-intro">
+    <li><i>M</i><div><b>权谋</b><span>先想几步，擅藏底牌，目标优先</span></div></li>
+    <li><i>N</i><div><b>自恋</b><span>要被看见，在意评价与位置</span></div></li>
+    <li><i>P</i><div><b>冷酷</b><span>情绪偏薄，敢冒险，较少后悔</span></div></li>
+  </ul>
+  <div class="pills"><span class="pill">18 道情景题</span><span class="pill">五级自评</span><span class="pill">约 3 分钟</span></div>
+  <button class="btn-primary" id="btnStart" type="button">开始测试</button>
+  <button class="btn-ghost" id="btnLast" type="button" hidden>查看上次结果</button>
+  <p class="hint">单选 · 没有标准答案 · 高分不等于坏人</p>
+  <p class="disclaimer" id="startDisclaimer">本测试为娱乐向自我探索，题目为原创情景改编，<strong>不构成</strong>心理诊断、人格障碍评估或任何医学建议。高分只代表自我报告倾向偏强，<strong>不代表道德好坏</strong>。若你正经历明显情绪困扰，请寻求专业帮助。</p>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="qh">
+    <div class="qrow"><button class="qback" id="qback" type="button">← 返回</button><span class="qprog" id="qprog"></span></div>
+    <div class="track"><div class="fill" id="fill"></div></div>
+  </div>
+  <div class="qbody">
+    <div class="qno" id="qno"></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </div>
+</section>
+
+<section id="loading" class="screen">
+  <div class="loader"></div>
+  <div class="load-title">正在把三面镜子转过来…</div>
+  <div class="load-sub">权谋、自恋、冷酷，各看一眼</div>
+</section>
+
+<section id="result" class="screen">
+  <div class="rtop"><span>黑暗人格三角</span><span id="resultMeta"></span></div>
+  <div class="result-body" id="resultBody"></div>
+  <div class="acts">
+    <p class="acts-note">娱乐向自我探索 · 不构成诊断 · 高分不等于坏人</p>
+    <div class="acts-row">
+      <button class="bo" id="btnRetry" type="button">重新测试</button>
+      <button class="bo" id="btnViewLast" type="button">查看上次结果</button>
+    </div>
+    <div class="acts-row">
+      <button class="bp" id="btnImg" type="button">生成分享图</button>
+      <button class="bo" id="btnCopy" type="button">复制文案</button>
+    </div>
+  </div>
+</section>
+
+<div class="ov" id="ov">
+  <div class="ovh">长按图片保存，发给朋友</div>
+  <img id="shareImg" alt="黑暗人格三角测试分享图">
+  <div class="ovb">
+    <button id="btnDl" type="button" style="background:#fff;color:#6E2C49">下载</button>
+    <button id="btnClose" type="button" style="background:rgba(255,249,247,.16);color:#FFF8F6">关闭</button>
+  </div>
+</div>
+
+<div class="code-mask" id="codeMask" aria-hidden="true">
+  <div class="code-panel-wrap">
+    <div class="code-panel">
+      <button type="button" class="code-close" id="codeClose" aria-label="关闭">×</button>
+      <h3>输入测试验证码</h3>
+      <input type="text" id="codeInput" placeholder="例如 DT7K3N" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="32" enterkeyhint="go">
+      <button type="button" class="btn-primary" id="btnCodeOk">开始答题</button>
+      <p class="code-hint">付款后会收到 DT 开头的 6 位验证码<br>每个码可使用 3 次<br>重新测试会再次扣次 · 查看上次结果不扣次</p>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:24px;text-align:center">请开启 JavaScript 后使用本测验。</p></noscript>
+<script>
+const MANTLE_NS='catquiz-zph420-codes';
+const MANTLE_COL='dt';
+const MANTLE_KEY='f60c0dae2088e5ccd5061a110aef0c0ff2a5b85f2658e78809c9123c9d82a22c';
+const MANTLE_BASE='https://mantledb.sh/v2/'+MANTLE_NS;
+const ACCESS_KEY='dark_triad_unlocked';
+const ACCESS_CODE_KEY='dark_triad_code';
+const LAST_KEY='dark_triad_last_result';
+const CODE_RE=/^DT[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{4}$/;
+const URL_='https://zengpenghui420-glitch.github.io/dark-triad/';
+const DISCLAIMER='本测试为娱乐向自我探索，题目为原创情景改编，不构成心理诊断、人格障碍评估或任何医学建议。高分只代表自我报告倾向偏强，不代表道德好坏。若你正经历明显情绪困扰，请寻求专业帮助。';
+const FONT='"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Noto Sans SC","WenQuanYi Micro Hei","Droid Sans Fallback","Microsoft YaHei",sans-serif';
+const CHOICES=[{v:1,t:'完全不像我'},{v:2,t:'不太像'},{v:3,t:'说不清'},{v:4,t:'有点像'},{v:5,t:'非常像我'}];
+
+const QS=[
+  {dim:'M', t:'关键场合我更愿意先听各方口径，再决定自己亮什么牌。'},
+  {dim:'N', t:'我享受成为话题中心的感觉，被冷落会明显不爽。'},
+  {dim:'P', t:'别人难过时，我常常想帮忙，但内心波动其实不大。'},
+  {dim:'M', t:'如果直接硬刚会伤到以后还用得上的关系，我会先忍一忍。'},
+  {dim:'N', t:'我常觉得自己的眼光或品味比多数人更准一点。'},
+  {dim:'P', t:'报复或反击如果要做，我倾向于快、准，少纠结「会不会太狠」。'},
+  {dim:'M', t:'我觉得多数争论里，信息差比嗓门更重要。'},
+  {dim:'N', t:'被当众认可/点名夸奖时，我会很受用（哪怕嘴上谦虚）。'},
+  {dim:'P', t:'刺激、冒险的事对我有吸引力，安全感反而有点无聊。'},
+  {dim:'M', t:'为了成事，我会考虑用一些「不说破」的策略，而不是全盘摊开。'},
+  {dim:'N', t:'我希望身边人承认我的特别之处，而不是把我当成「普通人」。'},
+  {dim:'P', t:'做错事后，内疚感来得慢，或者很快就被「下一件事」冲掉。'},
+  {dim:'M', t:'别人随口透露的弱点，我会下意识记一记，以备不时之需。'},
+  {dim:'N', t:'选朋友或合作对象时，我会在意对方的地位、影响力或面子资源。'},
+  {dim:'P', t:'规则挡路时，我更容易想办法绕开，而不是乖乖停住。'},
+  {dim:'M', t:'制订计划时，我会优先确保自己的利益不被绑进去当炮灰。'},
+  {dim:'N', t:'若长期得不到应得的尊重，我会很难继续心平气和。'},
+  {dim:'P', t:'陌生人的痛苦不太容易真正戳到我，除非和我利益相关。'}
+];
+
+const READ={
+  M:{
+    low:'这维倾向偏弱。你更常直球，较少藏牌，也不习惯把别人随口说的弱点存起来备用。',
+    mid:'这维倾向中等。该直说时你会直说；关系以后还用得上时，你会先收一收，而不是当场硬刚。',
+    high:'这维倾向偏强。你习惯先想几步。信息差、时机和自己的利益位置，通常比当场情绪更早进入计算。'
+  },
+  N:{
+    low:'这维倾向偏弱。你不太需要站在中间，被忽略通常没事，也不靠夸奖来确认自己。',
+    mid:'这维倾向中等。你在意被看见，但不是每时每刻。该出场时你会享受，冷一下也不会立刻垮掉。',
+    high:'这维倾向偏强。焦点和尊重对你很重要。被当成「普通人」会不舒服，评价也更容易牵动你。'
+  },
+  P:{
+    low:'这维倾向偏弱。你共情来得快，也容易内疚。冒险不是默认选项，规则多半会让你停一下。',
+    mid:'这维倾向中等。你能帮忙，也能抽身。内疚不是没有，但不会永远停在原地。',
+    high:'这维倾向偏强。情绪表面比较平。冒险、绕开障碍、较少后悔，这些在你身上更常出现。'
+  }
+};
+
+const PROFILES={
+  M:{
+    title:'幕后棋手',
+    punch:'你很少先把底牌摊在桌上。',
+    tags:['先想后动','藏一手','目标优先'],
+    traits:[
+      '关键场合你会先听完各方口径，再决定自己亮哪一张牌。',
+      '关系以后还用得上时，你宁可先忍，也不当场把桥拆了。',
+      '你觉得争论里信息差比嗓门有用，所以很少靠音量取胜。',
+      '为了成事，你会留一点「不说破」的空间，而不是全盘摊开。',
+      '别人随口露出的弱点，你会下意识记一笔，不一定马上用。',
+      '订计划时，你会先确认自己没有被绑进去当炮灰。'
+    ],
+    blinds:[
+      '别人容易把你的谨慎看成城府，觉得不容易交心。',
+      '算得太细时，你会错过一次本来可以直接说清楚的机会。',
+      '对方如果也在算，两边都会变慢，信任更慢。'
+    ],
+    advice:[
+      '挑一个安全的人，把真实意图说全一句，关系会松一口气。',
+      '策略用来把事情做成，少用来让人猜不透你。',
+      '每周留一件不必赢的小事，练习直球。',
+      '先写下你要的结果，避免为了赢过程而偏掉。'
+    ]
+  },
+  N:{
+    title:'聚光主角',
+    punch:'你不是吵着要关注，你是不想被当成背景。',
+    tags:['要被看见','眼光在线','在意位置'],
+    traits:[
+      '成为话题中心时你会很受用，被冷落会明显不爽。',
+      '你常常觉得自己的眼光或品味，比周围人准那么一点。',
+      '当众被点名夸奖，你会记很久，哪怕嘴上在谦虚。',
+      '你希望别人承认你的特别，而不是把你归进「都差不多」。',
+      '选朋友或搭档时，你会看对方的地位、影响力和面子。',
+      '长期得不到你觉得应得的尊重，你很难继续心平气和。'
+    ],
+    blinds:[
+      '别人可能觉得你爱站到中间，他们的份被挤掉了。',
+      '评价一冷，你的劲就容易跟着掉。',
+      '太看重位置时，普通但可靠的人会被你看轻。'
+    ],
+    advice:[
+      '把「被看见」从唯一燃料，换成做成一件你自己认可的事。',
+      '具体地夸别人一句，焦点不会因此从你身上消失。',
+      '尊重来晚了的时候，先分清你要的是事实，还是掌声。',
+      '允许自己有普通的一天，这不等于你变平了。'
+    ]
+  },
+  P:{
+    title:'冷刃行者',
+    punch:'你不是没心，你是波动来得又浅又短。',
+    tags:['情绪薄','敢冒险','少后悔'],
+    traits:[
+      '别人难过时你常常愿意搭把手，内心却没有太大起伏。',
+      '真要反击，你倾向于快、准，不太反复纠结会不会太狠。',
+      '刺激和冒险对你有吸引力，太安全的日子会有点无聊。',
+      '做错事后内疚来得慢，或者很快被下一件事冲掉。',
+      '规则挡路时，你更容易找绕开的办法，而不是先停住。',
+      '陌生人的痛苦不太容易真正戳到你，除非牵到自己。'
+    ],
+    blinds:[
+      '亲近的人会觉得你冷，不懂他们有多难受。',
+      '少后悔让你敢冲，也让后果更容易落到别人身上。',
+      '绕规则绕久了，信任会比事情本身先裂开。'
+    ],
+    advice:[
+      '帮忙前停三秒，问一句「你现在需要我做什么」。',
+      '想绕开规则时，给自己十分钟再决定。',
+      '直接说「我感觉不深」，比假装很有感觉更不伤人。',
+      '冒险可以留，给在乎的人留一条找得到你的退路。'
+    ]
+  },
+  soft:{
+    title:'柔光旅人',
+    punch:'你的暗面很浅，浅到别人常常先看见光。',
+    tags:['直球','低调','容易心软'],
+    traits:[
+      '你不太绕弯，想说的往往直接说出来。',
+      '你不爱抢焦点，被忽略通常也不会太难受。',
+      '别人难受时你容易被带着走，内疚也来得快。',
+      '你更信任规则和安全感，冒险不是默认选项。',
+      '你很少把别人的弱点存进备忘录。',
+      '利益冲突时，你更可能先让一步。'
+    ],
+    blinds:[
+      '太直、太软的时候，容易被会算计的人带着走。',
+      '你不争，不代表需求不存在，只是经常排到最后。',
+      '温和若没说边界，会被当成怎么都行。'
+    ],
+    advice:[
+      '温和留着，边界说出来：这次我不方便。',
+      '重要场合允许自己先想一步，不必每次都把牌摊光。',
+      '心软之前问一句：这是我的责任，还是我在替人扛。',
+      '你的光不必变暗，只需要在该停的地方停一下。'
+    ]
+  },
+  apex:{
+    title:'暗面顶点',
+    punch:'三面一起偏高时，你的存在感会很硬。',
+    tags:['三线都亮','目的明确','气场压人'],
+    traits:[
+      '你既会先算下一步，也希望自己站在重要的位置上。',
+      '情绪很少拖住你，决定往往快，而且不太回头看。',
+      '你记得别人的软肋，也在意自己有没有被放到该在的高度。',
+      '规则如果挡路，你会先估绕过的代价，而不是先服从。',
+      '关系在你这里可以是资源，也可以是舞台。',
+      '别人靠近时，容易同时感到被看穿，和被比下去。'
+    ],
+    blinds:[
+      '亲近的人会既怕被算计，又觉得自己只是观众。',
+      '你很能成事，关系也很容易被用薄。',
+      '敢给你真话的人变少之后，你容易只听见自己的版本。'
+    ],
+    advice:[
+      '挑一段不必赢的关系，练习把底牌说完。',
+      '成事前问一句：赢了之后，谁付出了你没算进去的代价。',
+      '把「被看见」和「被信任」分开，后者更慢，也更值钱。',
+      '留一个不表演、不算计的小时，核对你到底累不累。'
+    ]
+  },
+  MN:{
+    title:'棋手×主角',
+    punch:'你既想把局看清，也想站在最亮的位置。',
+    tags:['会算也会亮','要位置','场面感'],
+    traits:[
+      '你会先听口径，同时很在意自己有没有被放在中间。',
+      '你藏得住牌，也享受被当众点名的那一下。',
+      '选人时你看资源和面子，也看这段关系能不能帮你成事。',
+      '得不到尊重时你很难平静，但你不一定当场翻脸。',
+      '你希望被看见特别之处，又不愿把全部意图说破。',
+      '计划里你会兼顾「我要赢」和「我要被看见在赢」。'
+    ],
+    blinds:[
+      '别人会觉得你既城府深，又爱抢镜头，不太好靠近。',
+      '又算又要掌声时，合作的人不知道该配合你，还是该捧你。',
+      '冷场加上信息差，你会比别人更焦躁。'
+    ],
+    advice:[
+      '一次只选一个：这场要结果，还是要被看见。',
+      '把夸奖留给具体的事，把策略留给真正的关键局。',
+      '允许有一场你不站在中间，看看局还在不在。',
+      '被冷落时先别加码表演，先问自己要的是尊重还是控制。'
+    ]
+  },
+  MP:{
+    title:'棋手×冷刃',
+    punch:'你算得清，也下得去手，情绪很少来搅局。',
+    tags:['冷静布局','少心软','结果导向'],
+    traits:[
+      '你会先收信息，再决定动哪一步，很少被内疚拖回去。',
+      '硬刚不划算时你能忍，真要反击则倾向于快和准。',
+      '你记得别人的弱点，规则挡路时也更容易想到绕开。',
+      '冒险对你有吸引力，但你会先看自己会不会当炮灰。',
+      '别人的难过不太能撼动你，除非牵到你的局。',
+      '你成事的方式常常安静，而且不太解释。'
+    ],
+    blinds:[
+      '别人会觉得你冷，而且不好对付，不只是冷静。',
+      '少后悔加上会算，伤害发生后你可能觉得「这很合理」。',
+      '信任一旦裂开，很少有人愿意再把真话给你。'
+    ],
+    advice:[
+      '出手前多写下一句：这一步谁会痛，痛完还要不要共事。',
+      '把「不说破」留在策略里，别留在道歉里。',
+      '十分钟冷却对你尤其有用，因为你一旦决定就很少回头。',
+      '找一个可以直说不舒服的人，专门用来校对你的力度。'
+    ]
+  },
+  NP:{
+    title:'主角×冷刃',
+    punch:'你喜欢被看见，也很少被内疚拖住脚步。',
+    tags:['要焦点','不怕冲','薄内疚'],
+    traits:[
+      '你享受站在中间，被冷落会不爽，但你不会为此内疚太久。',
+      '你觉得自己的眼光更准，也敢为了刺激走得比别人远。',
+      '当众被夸你会很受用，事后却不一定记住别人的感受。',
+      '尊重没到位时你很难平静，反击往往快，不太纠结狠不狠。',
+      '你会看对方的地位和面子，规则挡路时也想绕开。',
+      '陌生人的痛苦不太能戳到你，自己的位置却很能戳到你。'
+    ],
+    blinds:[
+      '别人可能觉得你耀眼，也觉得你不太把他们放在心上。',
+      '要焦点又少后悔，容易把场面变成只有你的舞台。',
+      '亲近的人一旦受伤，你可能已经进入下一件事了。'
+    ],
+    advice:[
+      '站到中间之后，留一句给旁边的人，不只留掌声给自己。',
+      '冲动的出风头之前，先问会不会把别人的份踩掉。',
+      '内疚来得慢没关系，把「我下次怎么补」写成具体动作。',
+      '尊重可以要，别用无视别人的感受来证明你值得被尊重。'
+    ]
+  }
+};
+
+let ans=[];
+let qi=0;
+let picking=false;
+let current=null;
+let codeBusy=false;
+
+function $(id){return document.getElementById(id)}
+function el(tag, cls, text){
+  const n=document.createElement(tag);
+  if(cls) n.className=cls;
+  if(text!=null) n.textContent=text;
+  return n;
+}
+function esc(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function rankOf(k){return k==='M'?0:k==='N'?1:2}
+function bandOf(score){return score<40?'low':score<65?'mid':'high'}
+function levelOf(index){
+  if(index<=24) return {id:'moon', name:'月光温和型', line:'影子很淡，更像月光。'};
+  if(index<=49) return {id:'shallow', name:'浅阴影型', line:'有影子，还盖不住光。'};
+  if(index<=74) return {id:'surge', name:'暗涌显现型', line:'暗处的水已经能感觉到。'};
+  return {id:'deep', name:'深渊镜像型', line:'镜子里的暗面比较完整，仍只是倾向。'};
+}
+function dimBlock(key, score){
+  const name=key==='M'?'权谋':key==='N'?'自恋':'冷酷';
+  return {key:key, name:name, score:score, text:'你的'+name+'（'+key+'）'+score+' 分，意味着：'+READ[key][bandOf(score)]};
+}
+function relationsOf(M, N, P){
+  const lines=[];
+  const top=[{k:'M',v:M},{k:'N',v:N},{k:'P',v:P}].sort((a,b)=>b.v-a.v)[0].k;
+  if(top==='M'){
+    lines.push('合拍：把话说清楚，也不逼你立刻交底的人。');
+    lines.push('摩擦：当场摊牌，还催你马上表态的人。');
+  }else if(top==='N'){
+    lines.push('合拍：肯看见你，也把位置分你一点的人。');
+    lines.push('摩擦：习惯把你晾在边上，或当众给你冷场的人。');
+  }else{
+    lines.push('合拍：说话直接，情绪也不黏上来的人。');
+    lines.push('摩擦：要你马上共情，还要你反复后悔的人。');
+  }
+  if(M>=65) lines.push('坑：你容易把「再想想」拖成不表态，对方会以为你在下套。');
+  else if(N>=65) lines.push('坑：你容易把冷淡读成否定。对方只是累了，你已经在心里开演。');
+  else if(P>=65) lines.push('坑：你容易觉得自己没恶意。对方已经不舒服了，你还停在「这没什么」。');
+  else if(M<40 && P<40) lines.push('坑：你容易把边界让出去，事后才觉得自己又吞了一次。');
+  else lines.push('坑：你容易在「想把事做成」和「想被喜欢」之间来回，两边都做一半。');
+  return lines;
+}
+function analyze(M, N, P){
+  const index=Math.round((M+N+P)/3);
+  const level=levelOf(index);
+  let type='M';
+  let note='';
+  if(M<40 && N<40 && P<40) type='soft';
+  else if(M>=65 && N>=65 && P>=65) type='apex';
+  else{
+    const arr=[{k:'M',v:M},{k:'N',v:N},{k:'P',v:P}].sort((a,b)=>(b.v-a.v)||(rankOf(a.k)-rankOf(b.k)));
+    if(arr[0].v-arr[1].v<=8){
+      const pair=[arr[0].k, arr[1].k].sort((a,b)=>rankOf(a)-rankOf(b));
+      type=pair.join('');
+      if(arr[0].v-arr[2].v<=8) note='三面很接近，称号取其中较高的两面。';
+    }else type=arr[0].k;
+  }
+  return {
+    M:M, N:N, P:P, index:index, level:level, type:type,
+    profile:PROFILES[type]||PROFILES.M,
+    note:note,
+    relations:relationsOf(M, N, P),
+    dims:[dimBlock('M', M), dimBlock('N', N), dimBlock('P', P)]
+  };
+}
+function scoreFromAnswers(list){
+  const bucket={M:[],N:[],P:[]};
+  for(let i=0;i<QS.length;i++) bucket[QS[i].dim].push(list[i]);
+  const to100=arr=>{
+    const mean=arr.reduce((a,b)=>a+b,0)/arr.length;
+    return Math.round((mean-1)/4*100);
+  };
+  return analyze(to100(bucket.M), to100(bucket.N), to100(bucket.P));
+}
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active', s.id===id));
+  window.scrollTo(0,0);
+}
+function toast(msg){
+  const t=$('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t=setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function renderQ(){
+  const q=QS[qi];
+  $('qprog').textContent=(qi+1)+' / '+QS.length;
+  $('fill').style.width=((qi+1)/QS.length*100)+'%';
+  $('qno').textContent='第 '+(qi+1)+' 题';
+  $('qtext').textContent=q.t;
+  $('qback').textContent=qi?'← 上一题':'← 返回';
+  const box=$('opts');
+  box.textContent='';
+  CHOICES.forEach(c=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='opt'+(ans[qi]===c.v?' sel':'');
+    b.appendChild(el('span','onum',String(c.v)));
+    b.appendChild(el('span','olab',c.t));
+    b.onclick=()=>pick(c.v);
+    box.appendChild(b);
+  });
+}
+function pick(v){
+  if(picking) return;
+  picking=true;
+  ans[qi]=v;
+  document.querySelectorAll('#opts .opt').forEach((node,k)=>node.classList.toggle('sel', k===v-1));
+  setTimeout(()=>{
+    picking=false;
+    if(qi<QS.length-1){qi++;renderQ()}
+    else finish();
+  },180);
+}
+function finish(){
+  show('loading');
+  const report=scoreFromAnswers(ans);
+  setTimeout(()=>{
+    try{localStorage.setItem(LAST_KEY, JSON.stringify({M:report.M,N:report.N,P:report.P,index:report.index,at:Date.now()}))}catch(e){}
+    refreshLastBtn();
+    renderResult(report);
+    show('result');
+  },900);
+}
+function fillDisclaimer(node){
+  node.textContent='';
+  DISCLAIMER.split(/(不构成|不代表道德好坏)/).forEach(part=>{
+    if(part==='不构成'||part==='不代表道德好坏') node.appendChild(el('strong',null,part));
+    else if(part) node.appendChild(document.createTextNode(part));
+  });
+}
+function radarSVG(M, N, P){
+  const dims=[{name:'权谋 M',score:M},{name:'自恋 N',score:N},{name:'冷酷 P',score:P}];
+  const cx=220, cy=206, R=102, n=3;
+  const pt=(i,v)=>{
+    const a=-Math.PI/2+(i*2*Math.PI)/n;
+    const rr=Math.max(0,Math.min(100,v))/100*R;
+    return [cx+rr*Math.cos(a), cy+rr*Math.sin(a)];
+  };
+  let rings='', axes='', nums='';
+  [25,50,75,100].forEach(k=>{
+    const pts=[];
+    for(let i=0;i<n;i++) pts.push(pt(i,k).map(v=>v.toFixed(1)).join(','));
+    const strong=k===50||k===100;
+    rings+='<polygon points="'+pts.join(' ')+'" fill="'+(k===100?'rgba(139,58,93,0.05)':'none')+'" stroke="'+(strong?'#C9A3B4':'#E7D3DC')+'" stroke-width="'+(strong?'1.6':'1')+'"/>';
+    const wedge=-Math.PI/6;
+    const sx=cx+(k/100)*R*Math.cos(wedge);
+    const sy=cy+(k/100)*R*Math.sin(wedge);
+    nums+='<text x="'+sx.toFixed(1)+'" y="'+sy.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#A08A98">'+k+'</text>';
+  });
+  for(let i=0;i<n;i++){
+    const p=pt(i,100);
+    axes+='<line x1="'+cx+'" y1="'+cy+'" x2="'+p[0].toFixed(1)+'" y2="'+p[1].toFixed(1)+'" stroke="#E4CFD8" stroke-width="1"/>';
+  }
+  const poly=dims.map((d,i)=>pt(i,d.score).map(v=>v.toFixed(1)).join(',')).join(' ');
+  const dots=dims.map((d,i)=>{
+    const p=pt(i,d.score);
+    return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4.5" fill="#FFF9F7" stroke="#8B3A5D" stroke-width="2"/>';
+  }).join('');
+  let labels='';
+  const halo=' stroke="#FFF9F7" stroke-width="4" paint-order="stroke"';
+  dims.forEach((d,i)=>{
+    const a=-Math.PI/2+(i*2*Math.PI)/n;
+    const lr=R+48;
+    const x=cx+lr*Math.cos(a);
+    const y=cy+lr*Math.sin(a);
+    const anchor=Math.abs(Math.cos(a))<0.25?'middle':(Math.cos(a)>0?'start':'end');
+    labels+='<text x="'+x.toFixed(1)+'" y="'+(y-8).toFixed(1)+'" text-anchor="'+anchor+'" font-size="13" fill="#2A1830"'+halo+'>'+esc(d.name)+'</text>';
+    labels+='<text x="'+x.toFixed(1)+'" y="'+(y+12).toFixed(1)+'" text-anchor="'+anchor+'" font-size="16" font-weight="700" fill="#8B3A5D"'+halo+'>'+d.score+'</text>';
+  });
+  const aria='三维雷达图，刻度 0 到 100。权谋 M '+M+'，自恋 N '+N+'，冷酷 P '+P;
+  return '<svg viewBox="0 0 440 430" role="img" aria-label="'+esc(aria)+'">'+
+    rings+axes+
+    '<polygon points="'+poly+'" fill="rgba(139,58,93,0.34)" stroke="#8B3A5D" stroke-width="2.4" stroke-linejoin="round"/>'+
+    dots+nums+labels+'</svg>';
+}
+function renderResult(r){
+  current=r;
+  const root=$('resultBody');
+  root.textContent='';
+  $('resultMeta').textContent=r.level.name;
+
+  const hero=el('section','card');
+  hero.appendChild(el('p','kicker','暗面指数'));
+  hero.appendChild(el('p','index-num',String(r.index)));
+  hero.appendChild(el('p','index-max','满分 100 · 三维平均'));
+  const badge=el('div','badge-row');
+  badge.appendChild(el('span','lv',r.level.name));
+  hero.appendChild(badge);
+  hero.appendChild(el('p','lv-line',r.level.line));
+  const title=el('h2','type-title',r.profile.title);
+  title.id='typeTitle';
+  hero.appendChild(title);
+  hero.appendChild(el('p','punch',r.profile.punch));
+  const tags=el('div','tags');
+  r.profile.tags.forEach(t=>tags.appendChild(el('span','tag',t)));
+  hero.appendChild(tags);
+  if(r.note) hero.appendChild(el('p','note',r.note));
+  root.appendChild(hero);
+
+  const radar=el('section','card');
+  radar.id='radarCard';
+  radar.appendChild(el('h2','st','三维雷达'));
+  const box=el('div','radar-box');
+  box.innerHTML=radarSVG(r.M,r.N,r.P);
+  radar.appendChild(box);
+  const row=el('div','score-row');
+  [['M','权谋',r.M],['N','自恋',r.N],['P','冷酷',r.P]].forEach(item=>{
+    const d=el('div');
+    d.dataset.dim=item[0];
+    d.appendChild(el('b',null,String(item[2])));
+    d.appendChild(el('span',null,item[1]+' '+item[0]));
+    row.appendChild(d);
+  });
+  radar.appendChild(row);
+  radar.appendChild(el('p','fine','外圈是 100。越靠外，这一维的自我报告倾向越强。0 是全选「完全不像我」，100 是全选「非常像我」。'));
+  root.appendChild(radar);
+
+  const traits=el('section','card');
+  traits.id='traitCard';
+  traits.appendChild(el('h2','st','特征表现'));
+  const ul=el('ul','bullets');
+  r.profile.traits.forEach(t=>ul.appendChild(el('li',null,t)));
+  traits.appendChild(ul);
+  root.appendChild(traits);
+
+  const blind=el('section','card');
+  blind.id='blindCard';
+  blind.appendChild(el('h2','st','盲点与摩擦'));
+  const ul2=el('ul','bullets');
+  r.profile.blinds.forEach(t=>ul2.appendChild(el('li',null,t)));
+  blind.appendChild(ul2);
+  blind.appendChild(el('p','sublabel','合拍 / 摩擦'));
+  r.relations.forEach(line=>{
+    const p=el('p','rel');
+    const idx=line.indexOf('：');
+    if(idx>0){
+      p.appendChild(el('b',null,line.slice(0,idx+1)));
+      p.appendChild(document.createTextNode(line.slice(idx+1)));
+    }else p.textContent=line;
+    blind.appendChild(p);
+  });
+  root.appendChild(blind);
+
+  const adv=el('section','card');
+  adv.id='adviceCard';
+  adv.appendChild(el('h2','st','改善建议'));
+  const ul3=el('ul','bullets');
+  r.profile.advice.forEach(t=>ul3.appendChild(el('li',null,t)));
+  adv.appendChild(ul3);
+  root.appendChild(adv);
+
+  const dims=el('section','card');
+  dims.id='dimCard';
+  dims.appendChild(el('h2','st','三维短解读'));
+  r.dims.forEach(d=>{
+    const block=el('div','dim-read');
+    const head=el('div','dim-head');
+    head.appendChild(el('span','dn',d.name+'（'+d.key+'）'));
+    head.appendChild(el('span','ds',String(d.score)));
+    block.appendChild(head);
+    block.appendChild(el('p',null,d.text));
+    dims.appendChild(block);
+  });
+  root.appendChild(dims);
+
+  const disc=el('p','disclaimer');
+  disc.id='disclaimer';
+  fillDisclaimer(disc);
+  root.appendChild(disc);
+}
+function resultText(r){
+  return [
+    '黑暗人格三角测试',
+    '暗面指数 '+r.index+' · '+r.level.name,
+    '主导：'+r.profile.title,
+    '权谋 '+r.M+' · 自恋 '+r.N+' · 冷酷 '+r.P,
+    '「'+r.profile.punch+'」',
+    '娱乐向自我探索，非诊断，不代表道德好坏。',
+    URL_
+  ].join('\n');
+}
+function copyText(){
+  if(!current){toast('还没有可复制的结果');return}
+  const t=resultText(current);
+  const done=()=>toast('文案已复制');
+  const fail=()=>{
+    const a=document.createElement('textarea');
+    a.value=t;document.body.appendChild(a);a.select();
+    try{document.execCommand('copy');done()}catch(e){toast('复制失败，请长按手动复制')}
+    a.remove();
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done).catch(fail);
+  else fail();
+}
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+function wrapT(ctx,text,maxW){
+  const out=[];let line='';
+  for(const ch of text){
+    if(ctx.measureText(line+ch).width>maxW && line){out.push(line);line=ch}
+    else line+=ch;
+  }
+  if(line) out.push(line);
+  return out;
+}
+function drawRadarCanvas(ctx,cx,cy,R,r){
+  const vals=[r.M,r.N,r.P];
+  const names=['权谋','自恋','冷酷'];
+  const pt=(i,v)=>{
+    const a=-Math.PI/2+i*2*Math.PI/3;
+    const rr=Math.max(0,Math.min(100,v))/100*R;
+    return [cx+rr*Math.cos(a), cy+rr*Math.sin(a)];
+  };
+  [25,50,75,100].forEach(k=>{
+    ctx.beginPath();
+    for(let i=0;i<3;i++){
+      const p=pt(i,k);
+      if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]);
+    }
+    ctx.closePath();
+    ctx.strokeStyle=(k===50||k===100)?'#C9A3B4':'#E7D3DC';
+    ctx.lineWidth=k===100?3:2;
+    ctx.stroke();
+  });
+  for(let i=0;i<3;i++){
+    const p=pt(i,100);
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(p[0],p[1]);
+    ctx.strokeStyle='#E4CFD8';
+    ctx.lineWidth=2;
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  vals.forEach((v,i)=>{
+    const p=pt(i,v);
+    if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]);
+  });
+  ctx.closePath();
+  ctx.fillStyle='rgba(139,58,93,0.35)';
+  ctx.fill();
+  ctx.strokeStyle='#8B3A5D';
+  ctx.lineWidth=4;
+  ctx.stroke();
+  vals.forEach((v,i)=>{
+    const p=pt(i,v);
+    ctx.beginPath();
+    ctx.arc(p[0],p[1],7,0,Math.PI*2);
+    ctx.fillStyle='#FFF9F7';
+    ctx.fill();
+    ctx.lineWidth=3;
+    ctx.strokeStyle='#8B3A5D';
+    ctx.stroke();
+    const a=-Math.PI/2+i*2*Math.PI/3;
+    const lx=cx+(R+42)*Math.cos(a);
+    const ly=cy+(R+42)*Math.sin(a);
+    ctx.font='600 28px '+FONT;
+    ctx.fillStyle='#2A1830';
+    ctx.textAlign=Math.abs(Math.cos(a))<0.3?'center':(Math.cos(a)>0?'left':'right');
+    ctx.textBaseline='middle';
+    ctx.fillText(names[i]+' '+vals[i], lx, ly);
+  });
+}
+function buildShare(r){
+  const W=1080,H=1920;
+  const cv=document.createElement('canvas');
+  cv.width=W;cv.height=H;
+  const x=cv.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'#F8F1F4');
+  g.addColorStop(.55,'#F3E4EC');
+  g.addColorStop(1,'#E7D0DC');
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.fillStyle='rgba(139,58,93,.12)';
+  x.beginPath();x.arc(180,260,280,0,Math.PI*2);x.fill();
+  x.fillStyle='rgba(58,36,56,.06)';
+  x.beginPath();x.arc(920,680,300,0,Math.PI*2);x.fill();
+  x.strokeStyle='#E4CFD8';x.lineWidth=3;x.strokeRect(48,48,W-96,H-96);
+  x.strokeStyle='#8B3A5D';x.lineWidth=4;
+  [[80,80,1,1],[W-80,80,-1,1],[80,H-80,1,-1],[W-80,H-80,-1,-1]].forEach(c=>{
+    x.beginPath();x.moveTo(c[0],c[1]+c[3]*28);x.lineTo(c[0],c[1]);x.lineTo(c[0]+c[2]*28,c[1]);x.stroke();
+  });
+  function T(t,tx,ty,s,col,wt){
+    x.font=(wt||500)+' '+s+'px '+FONT;
+    x.fillStyle=col;x.textAlign='center';x.textBaseline='top';
+    x.fillText(t,tx,ty);
+  }
+  T('娱乐向 · 自我探索',W/2,118,28,'#8B3A5D',600);
+  T('黑暗人格三角测试',W/2,176,64,'#2A1830',700);
+  T('你敢面对真实的自己吗',W/2,262,32,'#6D5362',500);
+  T('暗面指数',W/2,348,28,'#8B3A5D',600);
+  T(String(r.index),W/2,388,132,'#6E2C49',700);
+  T(r.level.name,W/2,540,36,'#8B3A5D',700);
+  T(r.profile.title,W/2,608,68,'#2A1830',700);
+  x.font='500 34px '+FONT;
+  const lines=wrapT(x,'「'+r.profile.punch+'」',860);
+  lines.forEach((ln,i)=>T(ln,W/2,708+i*48,34,'#3A2438',500));
+  const baseY=708+lines.length*48+40;
+  const labels=[['权谋 M',r.M],['自恋 N',r.N],['冷酷 P',r.P]];
+  const bw=250,bh=148,gap=24;
+  let bx=(W-(bw*3+gap*2))/2;
+  labels.forEach(it=>{
+    x.fillStyle='#FFF9F7';
+    roundRect(x,bx,baseY,bw,bh,28);x.fill();
+    x.strokeStyle='#E4CFD8';x.lineWidth=2;x.stroke();
+    T(it[0],bx+bw/2,baseY+22,28,'#6D5362',600);
+    T(String(it[1]),bx+bw/2,baseY+64,54,'#8B3A5D',700);
+    bx+=bw+gap;
+  });
+  const scoresBottom=baseY+bh;
+  const footerTop=H-300;
+  const radarCenter=Math.round((scoresBottom+footerTop)/2)+8;
+  const radarR=Math.max(128, Math.min(176, Math.floor((footerTop-scoresBottom-120)/2)));
+  drawRadarCanvas(x,W/2,radarCenter,radarR,r);
+  x.font='400 26px '+FONT;
+  const dlines=wrapT(x,'本测试为娱乐向自我探索，不构成心理诊断或任何医学建议。高分不代表道德好坏。',900);
+  dlines.forEach((ln,i)=>T(ln,W/2,footerTop+i*40,26,'#6D5362',400));
+  T(URL_,W/2,footerTop+dlines.length*40+28,26,'#8B3A5D',600);
+  return cv.toDataURL('image/png');
+}
+function showShare(){
+  if(!current){toast('还没有可分享的结果');return}
+  try{
+    const u=buildShare(current);
+    $('shareImg').src=u;
+    $('shareImg').alt='黑暗人格三角测试 '+current.profile.title+' 权谋'+current.M+' 自恋'+current.N+' 冷酷'+current.P;
+    window.__shareUrl=u;
+    $('ov').classList.add('show');
+  }catch(e){
+    console.error(e);
+    toast('生成失败，请截图分享');
+  }
+}
+
+function isUnlocked(){try{return sessionStorage.getItem(ACCESS_KEY)==='1'}catch(e){return false}}
+function setUnlocked(code){
+  try{
+    sessionStorage.setItem(ACCESS_KEY,'1');
+    if(code) sessionStorage.setItem(ACCESS_CODE_KEY,code);
+  }catch(e){}
+}
+function clearUnlock(){
+  try{
+    sessionStorage.removeItem(ACCESS_KEY);
+    sessionStorage.removeItem(ACCESS_CODE_KEY);
+  }catch(e){}
+}
+function normalizeCode(v){
+  return String(v||'')
+    .trim()
+    .replace(/[\uFF21-\uFF3A]/g, ch=>String.fromCharCode(ch.charCodeAt(0)-0xFF21+65))
+    .replace(/[\uFF10-\uFF19]/g, ch=>String.fromCharCode(ch.charCodeAt(0)-0xFF10+48))
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g,'');
+}
+function openCodeModal(prefill){
+  $('codeMask').classList.add('show');
+  $('codeMask').setAttribute('aria-hidden','false');
+  document.body.classList.add('lock');
+  const inp=$('codeInput');
+  if(prefill!=null) inp.value=prefill;
+  setTimeout(()=>inp.focus(),40);
+}
+function closeCodeModal(){
+  $('codeMask').classList.remove('show');
+  $('codeMask').setAttribute('aria-hidden','true');
+  document.body.classList.remove('lock');
+}
+function startQuiz(){
+  ans=[];qi=0;picking=false;
+  closeCodeModal();
+  show('quiz');
+  renderQ();
+}
+function setCodeBusy(busy){
+  const btn=$('btnCodeOk');
+  btn.disabled=!!busy;
+  btn.textContent=busy?'验证中…':'开始答题';
+}
+function refreshLastBtn(){
+  let has=false;
+  try{has=!!localStorage.getItem(LAST_KEY)}catch(e){}
+  $('btnLast').hidden=!has;
+}
+function clampScore(n){
+  n=Number(n);
+  if(!Number.isFinite(n)) return null;
+  return Math.max(0, Math.min(100, Math.round(n)));
+}
+function showLast(){
+  let data=null;
+  try{data=JSON.parse(localStorage.getItem(LAST_KEY)||'null')}catch(e){data=null}
+  if(!data){toast('还没有上次结果');refreshLastBtn();return}
+  const M=clampScore(data.M), N=clampScore(data.N), P=clampScore(data.P);
+  if(M==null||N==null||P==null){toast('还没有上次结果');refreshLastBtn();return}
+  renderResult(analyze(M,N,P));
+  show('result');
+  toast('已打开上次结果，本次不扣次');
+}
+async function mantleFetch(url, opts){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),12000);
+  try{return await fetch(url, Object.assign({}, opts, {signal:ctl.signal}))}
+  finally{clearTimeout(timer)}
+}
+async function mantleGet(code){
+  const r=await mantleFetch(MANTLE_BASE+'/'+MANTLE_COL+'/'+encodeURIComponent(code),{headers:{'X-Mantle-Key':MANTLE_KEY}});
+  if(r.status===404) return null;
+  if(!r.ok) throw new Error('net '+r.status);
+  return r.json();
+}
+async function mantleDecr(code){
+  const r=await mantleFetch('https://mantledb.sh/v2/increment/'+MANTLE_NS+'/'+MANTLE_COL+'/'+encodeURIComponent(code),{
+    method:'POST',
+    headers:{'Content-Type':'application/json','X-Mantle-Key':MANTLE_KEY},
+    body:JSON.stringify({key:'remaining',by:-1})
+  });
+  if(!r.ok) throw new Error('net '+r.status);
+  return r.json();
+}
+async function mantleIncr(code){
+  try{
+    await mantleFetch('https://mantledb.sh/v2/increment/'+MANTLE_NS+'/'+MANTLE_COL+'/'+encodeURIComponent(code),{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Mantle-Key':MANTLE_KEY},
+      body:JSON.stringify({key:'remaining',by:1})
+    });
+  }catch(e){}
+}
+async function redeemCode(code){
+  const data=await mantleGet(code);
+  if(!data||typeof data.remaining!=='number') return {ok:false,reason:'invalid'};
+  if(data.remaining<=0) return {ok:false,reason:'exhausted'};
+  const after=await mantleDecr(code);
+  const left=typeof after.remaining==='number'?after.remaining:-1;
+  if(left<0){await mantleIncr(code);return {ok:false,reason:'exhausted'}}
+  return {ok:true,remaining:left,max:data.max||3};
+}
+async function tryUnlock(fromUrl){
+  if(codeBusy) return false;
+  const code=normalizeCode($('codeInput').value);
+  $('codeInput').value=code;
+  if(!code){if(!fromUrl) toast('请输入验证码');return false}
+  if(!CODE_RE.test(code)){if(!fromUrl) toast('验证码不正确');return false}
+  codeBusy=true;
+  setCodeBusy(true);
+  try{
+    const out=await redeemCode(code);
+    if(out.ok){
+      setUnlocked(code);
+      const left=out.remaining;
+      toast(left>0?('验证成功，还可以测 '+left+' 次'):'验证成功，这是本码最后一次');
+      startQuiz();
+      return true;
+    }
+    if(!fromUrl) toast(out.reason==='exhausted'?'此验证码已用完（每个码限 3 次）':'验证码不正确');
+    return false;
+  }catch(e){
+    console.error(e);
+    if(!fromUrl) toast('网络异常，请稍后重试');
+    return false;
+  }finally{
+    codeBusy=false;
+    setCodeBusy(false);
+  }
+}
+
+$('btnStart').onclick=()=>{if(isUnlocked()){startQuiz();return} openCodeModal(null)};
+$('btnLast').onclick=()=>showLast();
+$('btnViewLast').onclick=()=>showLast();
+$('btnCodeOk').onclick=()=>tryUnlock(false);
+$('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter') tryUnlock(false)});
+$('codeInput').addEventListener('input',()=>{
+  const input=$('codeInput');
+  const v=input.value.toUpperCase();
+  if(v!==input.value){const p=input.selectionStart;input.value=v;try{input.setSelectionRange(p,p)}catch(e){}}
+});
+$('codeClose').onclick=closeCodeModal;
+$('codeMask').addEventListener('click',e=>{if(e.target===$('codeMask')) closeCodeModal()});
+$('qback').onclick=()=>{
+  if(picking) return;
+  if(qi>0){qi--;renderQ()}
+  else show('start');
+};
+$('btnRetry').onclick=()=>{
+  let pre='';
+  try{pre=sessionStorage.getItem(ACCESS_CODE_KEY)||''}catch(e){}
+  clearUnlock();
+  openCodeModal(pre);
+};
+$('btnCopy').onclick=copyText;
+$('btnImg').onclick=showShare;
+$('btnClose').onclick=()=>$('ov').classList.remove('show');
+$('btnDl').onclick=()=>{
+  if(!window.__shareUrl) return;
+  const a=document.createElement('a');
+  a.href=window.__shareUrl;
+  a.download='黑暗人格三角测试.png';
+  document.body.appendChild(a);a.click();a.remove();
+};
+refreshLastBtn();
+(function(){
+  try{
+    const p=new URLSearchParams(location.search).get('code');
+    if(p==null||p==='') return;
+    if(isUnlocked()) return;
+    $('codeInput').value=normalizeCode(p);
+    openCodeModal($('codeInput').value);
+    tryUnlock(true);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
